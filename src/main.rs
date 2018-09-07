@@ -1,4 +1,7 @@
+#[macro_use]
+extern crate nom;
 mod lexer;
+mod parser;
 
 fn process_queue(queue: &mut std::collections::VecDeque<std::path::PathBuf>)
 {

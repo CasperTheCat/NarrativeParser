@@ -1,5 +1,4 @@
-#[macro_use]
-extern crate nom;
+
 use nom::{Needed, Context};
 use std::io::prelude::*;
 
@@ -7,8 +6,7 @@ use std::io::prelude::*;
 struct SyntaxNode {
     subjectNoun: String,
     actingVerb: String,
-    targetNoun: String,
-    sugar: String
+    targetNoun: String
 }
 
 /*enum Err<I, E = u32> {
@@ -19,14 +17,14 @@ struct SyntaxNode {
 
 /*type IResult<I,O,E = u32> = Result<(I,O), Err<I,E>>;*/
 
-/*use nom::IResult;
+use nom::IResult;
 
 
 fn parseSubjectNoun(x: &[u8]) -> IResult<&[u8], String>
 {
     let mut builder = String::new();
 
-    for xi in x.iter()
+    for &xi in x.iter()
     {
         //let string_xi = std::str::from_utf8(xi).expect("Unable to utf8 encode");
 
@@ -46,7 +44,7 @@ fn parseSubjectNoun(x: &[u8]) -> IResult<&[u8], String>
     
     if builder == ""
     {
-        return Err(nom::Err::Error("Wat"));
+        return Err(::nom::Err::Incomplete(::nom::Needed::Size(10)));
     }
     else
     {
@@ -64,10 +62,10 @@ fn parseTargetNoun(x: &[u8]) -> IResult<&[u8], String>
     Ok((x, "Ally".to_string()))
 }
 
-fn parseSugar(x: &[u8]) -> IResult<&[u8], String>
+/*fn parseSugar(x: &[u8]) -> IResult<&[u8], String>
 {
     Ok(("", String::from_utf8(x).expect("Failed to convert Sugar")))
-}
+}*/
 
 named!(nfd_parse<&[u8], SyntaxNode>,
     alt!
@@ -77,7 +75,6 @@ named!(nfd_parse<&[u8], SyntaxNode>,
             aa: parseSubjectNoun >>
             bb: parseActingVerb >>
             cc: parseTargetNoun >>
-            dd: parseSugar >>
             (SyntaxNode{subjectNoun: aa.to_string(), actingVerb: bb.to_string(), targetNoun: cc.to_string()})
         )
         |
@@ -87,6 +84,14 @@ named!(nfd_parse<&[u8], SyntaxNode>,
         )
     )
 );
+
+pub fn parse(_x: &Vec<u8>)
+{
+    let parsed = nfd_parse(_x);
+    println!("{:?}", parsed);
+}
+
+/*
 
 fn parse(_path: &std::path::Path)
 {
