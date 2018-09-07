@@ -1,0 +1,7 @@
+[package]
+name = "NarrativeParser"
+version = "0.1.0"
+authors = ["Chris Anderson <zsmyna@gmail.com>"]
+
+[dependencies]
+nom = "^4.0"

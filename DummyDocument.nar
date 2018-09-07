@@ -1,0 +1,21 @@
+// Markdown? but with Comments!
+// Final Act
+
+-- A
+# Final Act
+Ally Dies
+Player defeats Villain
+
+-- B
+# Final Act
+Ally Dies
+Villain defeats Player
+
+-- C
+# Final Act
+Player defeats Villain
+
+
+-- Start
+# Starting Act
+Player chooses A,B,C
