@@ -12,7 +12,7 @@ Narrative directives
 
 Generally in the form
 
-<Entity> <Verb> <Entity>
+\<Entity\> \<Verb\> \<Entity\>
 
 ## Entities
 
